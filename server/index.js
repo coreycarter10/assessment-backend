@@ -41,20 +41,30 @@ app.get("/api/fortune", (req, res) => {
 })
 
 const motivationList = [
-  "JavaScript is no match for you!",
-  "You're going to do great things!",
-  "You're going to become the best coder the world has ever seen!"
+  {
+    id: 1,
+    motivation: "JavaScript is no match for you!"
+  },
+  {
+    id: 2,
+    motivation: "You're going to do great things!"
+  },
+  {
+    id: 3,
+    motivation: "You're going to become the best coder the world has ever seen!"
+  }
 ];
 
 app.get("/api/motivation", (req, res) => {
   res.status(200).send(motivationList);
 })
 
-app.post("/api/motvation/", (req, res) => {
-    const {motivateString} = req.body;
+app.post("/api/motivationList/", (req, res) => {
+  const {motivateString} = req.body;
 
     let newMotivateString = {
-    motivateString
+    motivation: motivateString,
+    id: motivationList[motivationList.length - 1].id++
     }
 
   motivationList.push(newMotivateString);
@@ -62,14 +72,13 @@ app.post("/api/motvation/", (req, res) => {
 })
 
 
-app.delete("/api/motivation", (req, res) => {
+app.delete("/api/motivation/:id", (req, res) => {
   let {id} = req.params;
-
-  for (let i = 0; i < id.data.length; i++) {
-    if (id === req.data[i]) {
-      motivationList.splice(id.data[i], 1);
-    }
-  }
+  console.log(id)
+  const index = motivationList.findIndex(item =>+item.id === +id)
+  
+  console.log(index)
+  motivationList.splice(index, 1);
 
   res.status(200).send(motivationList);
 })

@@ -8,17 +8,15 @@
 
     <button id = "fortuneButton">Get a fortune</button>
 
-    <button id = "motivationButton">Get all motivation</button>
+    <button id = "motivationButton">Get motivations</button>
 
     <form>
-      <label for="motivate">Create motivational quote:</label><br>
-
-      <input type="text" id="createmotivationquote" name="createmotivationquote"><br>
-
-      <button id = "createMotivationSubmit">Submit quote</button>
+      <input type = "text" id = "addMotivation" placeholder="Add a motivational quote">
+      <button id ="submitButton">Submit</button>
     </form>
+    <div id ='listcontainer'></div>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src= "main.js"></script>
+    <script src = "main.js"></script>
   </body>
 </html>
